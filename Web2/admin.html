@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Traveler Store</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="ski.html" class="active">Ski Clothing</a></li>
+        <li><a href="summer.html">Summer Clothing</a></li>
+        <li><a href="accessories.html">Accessories</a></li>
+        <li><a href="login.html">Sign In</a></li>
+        <li><a href="register.html">Sign Up</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="admin.html">Dashbord</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="auth-container">
+    <h1>Admin Panel</h1>
+    <div id="admin-content"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Traveler Store. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const adminEmail = "admin@travel.com";
+    const adminPassword = "t1t2";
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const adminContent = document.getElementById("admin-content");
+
+    if (!currentUser || currentUser.email !== adminEmail || currentUser.password !== adminPassword) {
+      adminContent.innerHTML = '<p style="color: red;">Access Denied. Admins only.</p>';
+    } else {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      let html = '<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">';
+      html += '<tr><th style="border: 1px solid #ccc; padding: 10px;">Name</th><th style="border: 1px solid #ccc; padding: 10px;">Email</th></tr>';
+      users.forEach(user => {
+        html += `<tr><td style="border: 1px solid #ccc; padding: 10px;">${user.name}</td><td style="border: 1px solid #ccc; padding: 10px;">${user.email}</td></tr>`;
+      });
+      html += '</table>';
+      adminContent.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!-- Sample product page HTML with working Add to Cart -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ski Clothing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="ski.html" class="active">Ski Clothing</a></li>
+                <li><a href="summer.html">Summer Clothing</a></li>
+                <li><a href="accessories.html">Accessories</a></li>
+                <li><a href="login.html">Sign In</a></li>
+                <li><a href="register.html">Sign Up</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="profile.html">Profile</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section class="products">
+        <h1>Ski Clothing</h1>
+        <div class="product-item">
+            <img src="jacket.jpeg" alt="Ski Jacket">
+            <h2>Winter Ski Jacket</h2>
+            <p>$120.00</p>
+            <button onclick="addToCart('Winter Ski Jacket', 120, 'jacket.jpeg')">Add to Cart</button>
+        </div>
+    </section>
+
+    <script>
+        function addToCart(name, price, image) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ name: name, price: price, image: image });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${name} has been added to your cart.`);
+        }
+    </script>
+</body>
+</html>
